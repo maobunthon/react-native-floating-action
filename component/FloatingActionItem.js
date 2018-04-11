@@ -1,35 +1,31 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import {
-  StyleSheet,
-  Text,
-  Image,
-  View,
-  Animated
-} from 'react-native';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { StyleSheet, Text, Image, View, Animated } from 'react-native'
 
-import { getTouchableComponent } from './utils/touchable';
+import { getTouchableComponent } from './utils/touchable'
 
-const DEFAULT_MARGIN = 8;
+const DEFAULT_MARGIN = 8
 
 class FloatingActionItem extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.animation = new Animated.Value(0);
+    this.animation = new Animated.Value(0)
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.active !== this.props.active) {
-      Animated.spring(this.animation, { toValue: nextProps.active ? 1 : 0 }).start();
+      Animated.spring(this.animation, {
+        toValue: nextProps.active ? 1 : 0
+      }).start()
     }
   }
 
   handleOnPress = () => {
-    const { name, onPress } = this.props;
+    const { name, onPress } = this.props
 
-    onPress(name);
-  };
+    onPress(name)
+  }
 
   renderText() {
     const {
@@ -40,10 +36,12 @@ class FloatingActionItem extends Component {
       textElevation,
       textBackground,
       textColor
-    } = this.props;
+    } = this.props
 
     if (elevation !== undefined) {
-      console.warn('FloatingActionItem: "elevation" property was deprecated. Please use "textElevation"');
+      console.warn(
+        'FloatingActionItem: "elevation" property was deprecated. Please use "textElevation"'
+      )
     }
 
     if (text) {
@@ -56,8 +54,8 @@ class FloatingActionItem extends Component {
             {
               backgroundColor: textBackground,
               elevation: textElevation || elevation
-            }]
-          }
+            }
+          ]}
         >
           <Text
             style={[
@@ -70,60 +68,68 @@ class FloatingActionItem extends Component {
             {text}
           </Text>
         </View>
-      );
+      )
     }
 
-    return null;
+    return null
   }
 
   renderButton() {
-    const { icon, color } = this.props;
+    const { icon, color } = this.props
 
-    let iconStyle;
+    let iconStyle
 
     if (icon && icon.uri) {
-      iconStyle = styles.iconLogo;
+      iconStyle = styles.iconLogo
     } else {
-      iconStyle = styles.icon;
+      iconStyle = styles.icon
     }
 
     return (
       <View key="button" style={[styles.button, { backgroundColor: color }]}>
-        {
-          React.isValidElement(icon) ? icon : <Image style={iconStyle} source={icon} />
-        }
+        {React.isValidElement(icon) ? (
+          icon
+        ) : (
+          <Image style={iconStyle} source={icon} />
+        )}
       </View>
-    );
+    )
   }
 
   render() {
-    const { position, distanceToEdge, paddingTopBottom } = this.props;
-    const Touchable = getTouchableComponent(false);
+    const { position, distanceToEdge, paddingTopBottom } = this.props
+    const Touchable = getTouchableComponent(false)
 
     const animatedActionContainerStyle = {
       marginBottom: this.animation.interpolate({
         inputRange: [0, 1],
         outputRange: [5, 10]
       })
-    };
+    }
 
-    const components = [];
-    const distanceToEdgeActionContainer = {};
+    const components = []
+    const distanceToEdgeActionContainer = {}
 
     if (position === 'left') {
-      components.push(this.renderButton());
-      components.push(this.renderText());
-      distanceToEdgeActionContainer.paddingLeft = distanceToEdge + DEFAULT_MARGIN;
+      components.push(this.renderButton())
+      components.push(this.renderText())
+      distanceToEdgeActionContainer.paddingLeft =
+        distanceToEdge + DEFAULT_MARGIN
     } else if (position === 'right') {
-      components.push(this.renderText());
-      components.push(this.renderButton());
-      distanceToEdgeActionContainer.paddingRight = distanceToEdge + DEFAULT_MARGIN;
+      components.push(this.renderText())
+      components.push(this.renderButton())
+      distanceToEdgeActionContainer.paddingRight =
+        distanceToEdge + DEFAULT_MARGIN
     } else {
-      components.push(this.renderButton());
+      components.push(this.renderButton())
     }
 
     return (
-      <Touchable activeOpacity={0.4} style={styles.container} onPress={this.handleOnPress}>
+      <Touchable
+        activeOpacity={0.4}
+        style={styles.container}
+        onPress={this.handleOnPress}
+      >
         <Animated.View
           style={[
             styles.actionContainer,
@@ -139,7 +145,7 @@ class FloatingActionItem extends Component {
           {components}
         </Animated.View>
       </Touchable>
-    );
+    )
   }
 }
 
@@ -158,7 +164,7 @@ FloatingActionItem.propTypes = {
   distanceToEdge: PropTypes.number,
   paddingTopBottom: PropTypes.number, // modified by parent property "actionsPaddingTopBottom"
   onPress: PropTypes.func
-};
+}
 
 FloatingActionItem.defaultProps = {
   color: '#1253bc',
@@ -166,7 +172,7 @@ FloatingActionItem.defaultProps = {
   textElevation: 5,
   textColor: '#444444',
   textBackground: '#ffffff'
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -214,9 +220,9 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 55,
+    height: 55,
+    borderRadius: 30,
     shadowOpacity: 0.35,
     shadowOffset: {
       width: 0,
@@ -228,15 +234,16 @@ const styles = StyleSheet.create({
   },
   iconLogo: {
     resizeMode: 'cover',
-    width: 40,
-    height: 40,
-    borderRadius: 20
+    width: 65,
+    height: 65,
+    borderRadius: 30
   },
   icon: {
     resizeMode: 'contain',
-    width: 20,
-    height: 20
+    width: 61,
+    height: 61,
+    marginTop: 3
   }
-});
+})
 
-export default FloatingActionItem;
+export default FloatingActionItem
