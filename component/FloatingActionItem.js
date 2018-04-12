@@ -170,8 +170,7 @@ FloatingActionItem.defaultProps = {
   color: '#1253bc',
   distanceToEdge: 30,
   textElevation: 5,
-  textColor: '#444444',
-  textBackground: '#ffffff'
+  textColor: '#ffffff'
 }
 
 const styles = StyleSheet.create({
@@ -206,7 +205,7 @@ const styles = StyleSheet.create({
     elevation: 5,
     borderRadius: 4,
     height: 22,
-    marginTop: 8
+    marginTop: 18
   },
   leftTextContainer: {
     marginLeft: 14
