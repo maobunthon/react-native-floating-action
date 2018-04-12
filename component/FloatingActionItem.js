@@ -187,7 +187,8 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     paddingBottom: 8,
-    paddingTop: 8
+    paddingTop: 8,
+    marginRight: -8
   },
   centerActionContainer: {
     paddingLeft: 10,
@@ -240,8 +241,8 @@ const styles = StyleSheet.create({
   },
   icon: {
     resizeMode: 'contain',
-    width: 61,
-    height: 61,
+    width: 60,
+    height: 60,
     marginTop: 3
   }
 })
