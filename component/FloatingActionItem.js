@@ -75,7 +75,7 @@ class FloatingActionItem extends Component {
   }
 
   renderButton() {
-    const { icon, color } = this.props
+    const { icon, color, customIconStyle } = this.props
 
     let iconStyle
 
@@ -90,7 +90,7 @@ class FloatingActionItem extends Component {
         {React.isValidElement(icon) ? (
           icon
         ) : (
-          <Image style={iconStyle} source={icon} />
+          <Image style={[iconStyle,customIconStyle]} source={icon} />
         )}
       </View>
     )
