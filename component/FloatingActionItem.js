@@ -194,16 +194,16 @@ const styles = StyleSheet.create({
     paddingRight: 10
   },
   textContainer: {
-    paddingHorizontal: 8,
-    shadowOpacity: 0.35,
-    shadowOffset: {
-      width: 0,
-      height: 5
-    },
-    shadowColor: '#000000',
-    shadowRadius: 3,
-    elevation: 5,
-    borderRadius: 4,
+    // paddingHorizontal: 8,
+    // shadowOpacity: 0.35,
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 5
+    // },
+    //shadowColor: '#000000',
+    //shadowRadius: 3,
+    // elevation: 5,
+    // borderRadius: 4,
     height: 22,
     marginTop: 18
   },
