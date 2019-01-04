@@ -35,7 +35,8 @@ class FloatingActionItem extends Component {
       position,
       textElevation,
       textBackground,
-      textColor
+      textColor,
+      textStyle
     } = this.props
 
     if (elevation !== undefined) {
@@ -62,7 +63,8 @@ class FloatingActionItem extends Component {
               styles.text,
               {
                 color: textColor
-              }
+              },
+              textStyle
             ]}
           >
             {text}
